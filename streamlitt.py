@@ -36,6 +36,10 @@ st.markdown("""
     .login-box a:hover {
         text-decoration: underline;
     }
+    .login-box label {
+        display: block;
+        margin-bottom: 10px;
+    }
     body {
         background-image: url('https://img.staticmb.com/mbcontent/images/crop/uploads/2024/1/solar-panels-for-home_0_1200.jpg');
         background-size: cover;
@@ -48,6 +52,7 @@ with st.form("login_form", clear_on_submit=True):
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
+    remember_password = st.checkbox("Remember password")
     submit_button = st.form_submit_button("Login")
     st.markdown('<a href="https://example.com/forgot-password">Forgot password?</a>', unsafe_allow_html=True)
     st.markdown('<a href="https://example.com/register">Don\'t have an account? Register here</a>', unsafe_allow_html=True)
