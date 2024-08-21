@@ -37,7 +37,7 @@ st.markdown("""
         text-decoration: underline;
     }
     body {
-        background-image: url('https://example.com/solar-panel-background.jpg');
+        background-image: url('https://img.staticmb.com/mbcontent/images/crop/uploads/2024/1/solar-panels-for-home_0_1200.jpg');
         background-size: cover;
     }
     </style>
