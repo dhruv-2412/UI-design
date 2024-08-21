@@ -7,7 +7,7 @@ from PIL import Image
 st.set_page_config(page_title="Solar SCADA Login", page_icon="☀")
 
 # Add a background image
-background_image = Image.open(""C:\Users\91983\Desktop\20200415_154039.jpg"") # Replace with your image
+background_image = Image.open("C:\Users\91983\Desktop\20200415_154039.jpg") # Replace with your image
 st.image(background_image, use_column_width=True)
 
 # Create a container for the login form
