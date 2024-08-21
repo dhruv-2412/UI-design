@@ -1,58 +1,46 @@
 import streamlit as st
-import random
-import time
+import hashlib
 
-# Function to simulate sun position and energy production
-def get_sun_position():
-    return random.uniform(0, 180)
+# Create a title for the app
+st.title("Solar SCADA Login")
 
-def get_energy_produced():
-    return random.uniform(0, 10)
+# Create a form for login credentials
+with st.form("login_form"):
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    submit_button = st.form_submit_button("Login")
 
-def get_weather():
-    return random.choice(["Sunny", "Cloudy", "Rainy"])
+# Create a dictionary to store usernames and passwords
+users = {"admin": "password123", "user1": "password456", "user2": "password789"}
 
-# Streamlit UI
-st.title("Single-Axis Solar Tracker")
+# Create a function to hash passwords
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
 
-# Sun Position Display
-sun_position = get_sun_position()
-st.metric("Sun Position", f"{sun_position:.2f}°")
+# Create a function to check if the username and password are correct
+def check_credentials(username, password):
+    if username in users:
+        stored_password = users[username]
+        hashed_password = hash_password(password)
+        if hashed_password == stored_password:
+            return True
+    return False
 
-# Panel Angle Display
-panel_angle = st.number_input("Panel Angle", min_value=0.0, max_value=180.0, value=0.0, step=0.1)
+# Check if the login credentials are correct
+if submit_button:
+    if check_credentials(username, password):
+        st.success("Login successful! Redirecting to dashboard...")
+        # Redirect to the dashboard page
+        st.write("You are now logged in. Please wait while we redirect you to the dashboard...")
+        # You can add code here to redirect to a new page or perform some action
+    else:
+        st.error("Invalid username or password")
 
-# Manual Control
-if st.button("Set Angle"):
-    st.success(f"Panel angle set to {panel_angle}°")
+# Add a forgot password link
+st.markdown("Forgot password? [Click here](https://example.com/forgot-password)")
 
-# Automated Tracking Mode
-if st.button("Enable Automated Tracking"):
-    st.info("Automated Tracking Enabled")
-
-# Performance Monitoring
-energy_produced = get_energy_produced()
-st.metric("Energy Produced", f"{energy_produced:.2f} kWh")
-
-# Weather Integration
-weather = get_weather()
-st.metric("Weather", weather)
-
-# Alerts and Notifications
-st.metric("Alerts", "None")
-
-# Update UI periodically
-while True:
-    sun_position = get_sun_position()
-    energy_produced = get_energy_produced()
-    weather = get_weather()
-
-    st.metric("Sun Position", f"{sun_position:.2f}°")
-    st.metric("Energy Produced", f"{energy_produced:.2f} kWh")
-    st.metric("Weather", weather)
-
-    time.sleep(1)
-
+# Add a register link
+st.markdown("Don't have an account? [Register here](https://example.com/register)")
 
 
 
