@@ -24,4 +24,4 @@ with login_container:
 # Add "Forgot password" and "No account" links
 with login_container:
   st.markdown("<p style='text-align: center; color: white;'>Forgot Password?</p>", unsafe_allow_html=True)
-  st.markdown("<p style='text-align: center; color: white;'>No account? Apply
+  st.markdown("<p style='text-align: center; color: white;'>No account? Apply for registration</p>")
